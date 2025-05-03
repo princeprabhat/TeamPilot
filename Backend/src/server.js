@@ -1,12 +1,20 @@
 
-import express from 'express';
 import app from './app.js';
 
+import config from "./config/config.js";
+import mongoose from 'mongoose'
 
 
 
-const port = 3000;
+let server;
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+
+mongoose.connect(config.mongoose.url).then(() => {
+    console.info("Connected to MongoDb on port: ", config.mongoose.url);
+    server = app.listen(config.port || 3000, () => {
+        console.info("Server listening on Port: ", config.port)
+    })
+}).catch((err) => {
+    console.error("Error connecting MongoDb: ", err);
+})
+

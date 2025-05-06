@@ -2,9 +2,9 @@ import express from "express";
 import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
-import { errorHandler } from "./middlewares/error";
-import routes from './routes/v1';
-import ApiError from "./utils/ApiError";
+import { errorHandler } from "./middlewares/error.js";
+import routes from './routes/v1/index.js';
+import ApiError from "../src/utils/ApiError.js";
 import httpStatus from 'http-status'
 
 const app = express();
